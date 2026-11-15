@@ -6,7 +6,7 @@ You edit code on your laptop, then copy it to a robot and run it.
 | Guide | For |
 |---|---|
 | **README.md** (this file) | Coaches: everyday use and editing code |
-| [SETUP.md](SETUP.md) | First-time setup of a laptop or a brick |
+| [SETUP.md](SETUP.md) | **Start here:** what to buy, making the SD card, setting up laptop, brick and controller |
 | [TROUBLESHOOTING.md](TROUBLESHOOTING.md) | Anything that goes wrong |
 
 > **Golden rule:** brick, controller and sticker numbers always match.

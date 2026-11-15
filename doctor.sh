@@ -17,14 +17,14 @@ fail() { echo "  FAIL  $*"; }
 
 echo "== This computer"
 if [ -f "$HOME/.ssh/id_ed25519_ev3" ]; then ok "SSH key ~/.ssh/id_ed25519_ev3 exists"
-else fail "No key ~/.ssh/id_ed25519_ev3  -> SETUP.md 'Each coach'"; fi
+else fail "No key ~/.ssh/id_ed25519_ev3  -> SETUP.md part 3.3"; fi
 
 target=$(ssh -G "$BRICK" 2>/dev/null | awk '/^hostname /{print $2}')
 alias_=$(ssh -G "$BRICK" 2>/dev/null | awk '/^hostkeyalias /{print $2}')
 if [ "$target" = "192.168.0.1" ] && [ "$alias_" = "$BRICK" ]; then
   ok "~/.ssh/config has an entry for $BRICK"
 else
-  fail "No proper '$BRICK' entry in ~/.ssh/config  -> SETUP.md step 'SSH config'"
+  fail "No proper '$BRICK' entry in ~/.ssh/config  -> SETUP.md part 3.4"
 fi
 
 if ifconfig 2>/dev/null | grep -q 'inet 192.168.0.2 '; then
@@ -78,7 +78,7 @@ fi
 
 name=$(printf '%s\n' "$out" | awk '/^NAME /{print $2}')
 [ "$name" = "$BRICK" ] && ok "Logged in, brick is named $name" \
-  || fail "Brick is named '$name', expected '$BRICK'  -> SETUP.md 'Name the brick'"
+  || fail "Brick is named '$name', expected '$BRICK'  -> SETUP.md part 4.3"
 
 mv=$(printf '%s\n' "$out" | awk '/^BATT /{print $2}')
 if [ "${mv:-0}" -ge 7500 ]; then ok "Battery ${mv} mV"

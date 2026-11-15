@@ -24,7 +24,7 @@ check_brick() {
   fi
   if [ "$name" != "$brick" ]; then
     echo "!! The brick plugged in is named '$name', not '$brick'." >&2
-    echo "   Plug in the right brick, or see SETUP.md if it was never named." >&2
+    echo "   Plug in the right brick, or see SETUP.md part 4.3 if it was never named." >&2
     exit 1
   fi
 }

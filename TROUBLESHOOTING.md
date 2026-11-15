@@ -23,7 +23,7 @@ The laptop can't see the brick (`No USB link`, `No route to host`, `Operation ti
 | Brick screen shows **no IP** at the top | Still booting, or the link isn't up | Wait 30 s. Brick: **Wireless and Networks → All Network Connections → Wired → Connect** |
 | Brick shows **169.254.x.x** | Link came up before the address was assigned | Wait 20 s; it usually changes to `192.168.0.1`. If not, unplug and replug USB |
 | Laptop sees **nothing at all** | Cable, port or hub | Cable in the brick's **PC** port (top, mini-USB), **straight into the laptop, no hub**. Try another cable: some only charge |
-| `No route to host` in one app (e.g. Terminal) but it works in another | macOS **Local Network** permission | System Settings → Privacy & Security → **Local Network** → turn on that app ([SETUP A1](SETUP.md#a1-macos-network-settings-stops-the-two-most-common-problems)) |
+| `No route to host` in one app (e.g. Terminal) but it works in another | macOS **Local Network** permission | System Settings → Privacy & Security → **Local Network** → turn on that app ([SETUP 3.1](SETUP.md#31-macos-network-settings)) |
 | Link **drops every minute or so**, or when you touch the motors | Loose cable, or **low battery** | `./doctor.sh` shows the battery; below ~7000 mV, charge it. Keep the USB cable away from motor cables |
 | Works, then stops after the brick sat idle | Brick turned itself off | Wake or restart it: hold **Back + Centre** to restart |
 
@@ -44,10 +44,10 @@ IP `192.168.0.2`, mask `255.255.255.0`, **Router empty**.
 | `WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!` | **Usually the wrong brick is plugged in**: you typed `ev3-2` but brick 3 is connected | Plug in the brick you named. This warning is the safety net doing its job |
 | Same warning, and you **re-flashed** that brick's SD card | The brick really got a new identity | Only then: `ssh-keygen -R ev3-N`, connect again and answer `yes` |
 | `The brick plugged in is named 'ev3-3', not 'ev3-2'` | Wrong brick plugged in | Plug in the right one |
-| `…is named 'ev3dev'` | Brick never got its name | [SETUP B4](SETUP.md#b4-name-the-brick) |
-| `Permission denied (publickey…)` | Your key isn't on this brick | Ask the brick manager to add your `.pub` ([SETUP B7](SETUP.md#b7-add-the-other-coaches-keys)) |
+| `…is named 'ev3dev'` | Brick never got its name | [SETUP 4.3](SETUP.md#43-name-the-brick) |
+| `Permission denied (publickey…)` | Your key isn't on this brick | Ask the brick manager to add your `.pub` ([SETUP 4.6](SETUP.md#46-let-other-coaches-in-if-several-people-use-one-brick)) |
 | Asks for `robot@…'s password` | Same: key not installed, or `~/.ssh/config` entry missing | `./doctor.sh` tells you which |
-| `Could not resolve hostname ev3-2` | No SSH config entry | [SETUP A3](SETUP.md#a3-ssh-config) |
+| `Could not resolve hostname ev3-2` | No SSH config entry | [SETUP 3.4](SETUP.md#34-get-the-code-and-the-brick-names) |
 | Asks for your key passphrase every time | Keychain not used | Check `UseKeychain yes` is in your config entry |
 
 **Never** "fix" SSH warnings with `StrictHostKeyChecking no`, by deleting `known_hosts`,
