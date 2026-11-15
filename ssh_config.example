@@ -1,0 +1,23 @@
+# Add these entries to the END of your ~/.ssh/config (see SETUP.md).
+#
+# Every brick has the same address over USB (192.168.0.1). HostKeyAlias makes
+# SSH remember each brick's identity separately, so plugging in the wrong
+# brick gives a clear warning instead of silently connecting to it.
+# Never "fix" that warning by turning off host key checking.
+
+Host ev3-1 ev3-2 ev3-3 ev3-4
+    HostName 192.168.0.1
+    User robot
+    IdentityFile ~/.ssh/id_ed25519_ev3
+    IdentitiesOnly yes
+    AddKeysToAgent yes
+    UseKeychain yes
+
+Host ev3-1
+    HostKeyAlias ev3-1
+Host ev3-2
+    HostKeyAlias ev3-2
+Host ev3-3
+    HostKeyAlias ev3-3
+Host ev3-4
+    HostKeyAlias ev3-4

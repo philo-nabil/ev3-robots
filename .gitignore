@@ -1,0 +1,14 @@
+# Never commit keys, passwords or personal SSH config.
+id_*
+*.pem
+*.key
+ssh_config
+!ssh_config.example
+.env
+passwords*
+
+# Python / editor clutter
+__pycache__/
+*.pyc
+.DS_Store
+.vscode/settings.json

@@ -1,0 +1,5 @@
+# The brick is Linux: Windows line endings break scripts there
+# ("/usr/bin/env: 'python3\r': No such file or directory").
+*.py  text eol=lf
+*.sh  text eol=lf
+ssh_config.example text eol=lf
