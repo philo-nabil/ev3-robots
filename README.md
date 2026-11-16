@@ -57,7 +57,8 @@ On the brick: **File Browser → ev3-robots → controller.py** → centre butto
 | `controller.py`: the **Settings** block at the top | ✅ ports, invert, speed, deadzone, brake/coast |
 | `controller.py`: `drive_session()` | ✅ add button actions |
 | Your own programs: copy `controller.py` to e.g. `team_red.py` | ✅ run with `./deploy.sh ev3-2 team_red.py` |
-| `deploy.sh`, `pair.sh`, `doctor.sh`, `lib.sh` | ❌ shared tools; ask before changing |
+| VEX IQ style programs: copy `vex_example.py` to e.g. `team_red_vex.py` | ✅ see [VEX IQ style programs](#vex-iq-style-programs) |
+| `deploy.sh`, `pair.sh`, `doctor.sh`, `lib.sh`, `vex_controller.py` | ❌ shared tools; ask before changing |
 
 ### Adding a button action
 
@@ -81,6 +82,41 @@ elif ev.code == ecodes.BTN_SOUTH:        # Cross
 | Stick clicks | `BTN_THUMBL` / `BTN_THUMBR` | | | |
 
 `Options`, `PS`, `L1` and `R1` are already used; reuse them only if you mean to.
+
+### VEX IQ style programs
+
+Coaches who know VEX IQ can write EV3 programs the same way, with `vex_controller.py`.
+Start from `vex_example.py` (arcade drive, beep on Triangle, Options quits):
+
+```bash
+./deploy.sh ev3-2 vex_example.py
+```
+
+```python
+from vex_controller import Controller, stop_motors_on_exit
+
+left, right = LargeMotor(OUTPUT_A), LargeMotor(OUTPUT_D)
+stop_motors_on_exit(left, right)        # always, right after creating motors
+controller = Controller()               # waits until the controller connects
+
+controller.ButtonEUp.pressed(sound.beep)        # callback on press
+if controller.ButtonFDown.pressing(): ...       # True while held
+speed = controller.AxisA.position()             # -100 .. 100
+```
+
+| VEX name | PS4 | | VEX name | PS4 |
+|---|---|---|---|---|
+| `AxisA` / `AxisB` | left stick up-down / left-right | | `ButtonEUp` / `ButtonEDown` | Triangle / Cross |
+| `AxisC` / `AxisD` | right stick left-right / up-down | | `ButtonFUp` / `ButtonFDown` | Square / Circle |
+| `ButtonLUp` / `ButtonLDown` | L1 / L2 | | `ButtonL3` / `ButtonR3` | stick clicks |
+| `ButtonRUp` / `ButtonRDown` | R1 / R2 | | `ButtonUp` `Down` `Left` `Right` | D-pad |
+| `ButtonShare` / `ButtonOptions` / `ButtonPS` | PS4 extras | | | |
+
+Built-in safety: if the controller disconnects, sticks read 0, buttons read released
+and the motors from `stop_motors_on_exit()` stop. They also stop on Ctrl+C, a crash or
+the stop button. Callbacks run one at a time, so keep them short.
+
+Check every button: `./deploy.sh ev3-2 vex_controller.py` prints each press and stick move.
 
 ### Python rules on the brick
 

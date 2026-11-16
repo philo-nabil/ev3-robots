@@ -104,6 +104,10 @@ the motors in one at a time.
 | Symptom | Fix |
 |---|---|
 | `SyntaxError` pointing at `f'...'` | The brick has Python 3.5: use `'{}'.format(x)` |
+| `AttributeError: 'InputDevice' object has no attribute 'absinfo'` (or `'path'`) | Code written for a newer evdev than the brick's 0.4.7. Use `vex_controller.py` or `controller.py`, which work with it |
+| VEX-style program: `ImportError: No module named 'vex_controller'` | `vex_controller.py` wasn't copied. `./deploy.sh ev3-N your_program.py` copies every `.py` file |
+| VEX-style program: robot keeps driving after Ctrl+C or a disconnect | `stop_motors_on_exit(left, right)` is missing. Add it right after creating the motors |
+| VEX-style program: buttons respond late | A callback is slow, and callbacks run one at a time. Keep them short |
 | `/usr/bin/env: 'python3\r': No such file` | File saved with Windows line endings. `.gitattributes` prevents this for Git users; in VS Code click **CRLF** in the status bar → **LF** |
 | Program not listed in the brick's File Browser, or won't start there | It must start with `#!/usr/bin/env python3` and be executable: `./deploy.sh ev3-N --copy` fixes both |
 | Nothing happens for 10 s after starting | Normal: Python loads slowly on the brick |
