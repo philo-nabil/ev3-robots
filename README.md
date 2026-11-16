@@ -9,8 +9,8 @@ You edit code on your laptop, then copy it to a robot and run it.
 | [SETUP.md](SETUP.md) | **Start here:** what to buy, making the SD card, setting up laptop, brick and controller |
 | [TROUBLESHOOTING.md](TROUBLESHOOTING.md) | Anything that goes wrong |
 
-> **Golden rule:** brick, controller and sticker numbers always match.
-> Controller `ev3-2` only drives brick `ev3-2`. The brick ignores any other controller.
+Each brick, its controller and its sticker have the same number. Controller `ev3-2` only
+drives brick `ev3-2`; the brick ignores every other controller.
 
 ## Driving
 
@@ -30,7 +30,7 @@ or you press Ctrl+C.
 Plug the brick into your laptop with USB, then in Terminal:
 
 ```bash
-cd ev3-robots          # this repo
+cd ~/Documents/ev3-robots
 git pull               # get everyone's latest code
 ./deploy.sh ev3-2      # copy code to brick 2 and run controller.py
 ```
@@ -42,23 +42,22 @@ Watch the output in Terminal; **Ctrl+C** stops the robot.
 ```bash
 ./deploy.sh ev3-2 --copy
 ```
-On the brick: **File Browser → ev3-robots → controller.py** → centre button
-(the folder is named after your copy of this repo).
+On the brick: **File Browser → ev3-robots → controller.py** → centre button.
 
-**Something wrong?** Run this first. It checks everything and tells you what to fix:
+**Something wrong?** Run this first. It checks everything and says what to fix:
 ```bash
 ./doctor.sh ev3-2
 ```
 
 ## What you can edit
 
-| File | Edit? |
+| File | Edit it? |
 |---|---|
-| `controller.py`: the **Settings** block at the top | ✅ ports, invert, speed, deadzone, brake/coast |
-| `controller.py`: `drive_session()` | ✅ add button actions |
-| Your own programs: copy `controller.py` to e.g. `team_red.py` | ✅ run with `./deploy.sh ev3-2 team_red.py` |
-| VEX IQ style programs: copy `vex_example.py` to e.g. `team_red_vex.py` | ✅ see [VEX IQ style programs](#vex-iq-style-programs) |
-| `deploy.sh`, `pair.sh`, `doctor.sh`, `lib.sh`, `vex_controller.py` | ❌ shared tools; ask before changing |
+| `controller.py`: the **Settings** block at the top | Yes: ports, invert, speed, deadzone, brake/coast |
+| `controller.py`: `drive_session()` | Yes: add button actions |
+| Your own programs: copy `controller.py` to e.g. `team_red.py` | Yes: run with `./deploy.sh ev3-2 team_red.py` |
+| VEX IQ style programs: copy `vex_example.py` to e.g. `team_red_vex.py` | Yes: see [VEX IQ style programs](#vex-iq-style-programs) |
+| `deploy.sh`, `pair.sh`, `doctor.sh`, `lib.sh`, `vex_controller.py` | No: shared tools, ask before changing |
 
 ### Adding a button action
 

@@ -5,8 +5,8 @@
 ./doctor.sh ev3-N
 ```
 It checks your laptop, the cable, the brick, the battery, the motors and the controller,
-changes nothing, and points to the section below. **Fix the first FAIL first**:
-later ones are often caused by it.
+changes nothing, and names the section below to read. **Fix the first FAIL first**:
+it often causes the later ones.
 
 Jump to: [Connection](#connection) · [Internet drops](#internet-drops) · [SSH](#ssh) ·
 [Controller](#controller) · [Wrong controller](#wrong-controller) · [Motors](#motors) ·
@@ -25,7 +25,7 @@ The laptop can't see the brick (`No USB link`, `No route to host`, `Operation ti
 | Laptop sees **nothing at all** | Cable, port or hub | Cable in the brick's **PC** port (top, mini-USB), **straight into the laptop, no hub**. Try another cable: some only charge |
 | `No route to host` in one app (e.g. Terminal) but it works in another | macOS **Local Network** permission | System Settings → Privacy & Security → **Local Network** → turn on that app ([SETUP 3.1](SETUP.md#31-macos-network-settings)) |
 | Link **drops every minute or so**, or when you touch the motors | Loose cable, or **low battery** | `./doctor.sh` shows the battery; below ~7000 mV, charge it. Keep the USB cable away from motor cables |
-| Works, then stops after the brick sat idle | Brick turned itself off | Wake or restart it: hold **Back + Centre** to restart |
+| Works, then stops after the brick sat idle | Brick turned itself off | Press the centre button to turn it on again |
 
 ## Internet drops
 
@@ -41,7 +41,7 @@ IP `192.168.0.2`, mask `255.255.255.0`, **Router empty**.
 
 | Message | Meaning | Fix |
 |---|---|---|
-| `WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!` | **Usually the wrong brick is plugged in**: you typed `ev3-2` but brick 3 is connected | Plug in the brick you named. This warning is the safety net doing its job |
+| `WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!` | **Usually the wrong brick is plugged in**: you typed `ev3-2` but brick 3 is connected | Plug in the brick you named. The warning stops you connecting to the wrong brick |
 | Same warning, and you **re-flashed** that brick's SD card | The brick really got a new identity | Only then: `ssh-keygen -R ev3-N`, connect again and answer `yes` |
 | `The brick plugged in is named 'ev3-3', not 'ev3-2'` | Wrong brick plugged in | Plug in the right one |
 | `…is named 'ev3dev'` | Brick never got its name | [SETUP 4.3](SETUP.md#43-name-the-brick) |
@@ -74,13 +74,11 @@ with brick 1, even by accident, makes it forget brick 2. Fix it with `./pair.sh 
 The program prints `Ignoring controller xx:xx… - this brick belongs to yy:yy…`,
 or `doctor.sh` says "a different controller is connected".
 
-This is the lock working: each brick only accepts the controller saved by `pair.sh`.
+Each brick only accepts the controller saved by `pair.sh`, so this message means the lock is working.
 
 1. Check the stickers: is this really controller `ev3-N`?
 2. If the controller was replaced or the stickers were wrong, re-pair the right one:
-   `./pair.sh ev3-N`. This also clears the old lock.
-
-Want a different controller on this brick? Same thing: `./pair.sh ev3-N` with the new one flashing.
+   `./pair.sh ev3-N`. This also clears the old lock. The same command moves a brick to a new controller.
 
 ## Motors
 
@@ -117,7 +115,7 @@ the motors in one at a time.
 
 ## Emergency stop
 
-In order of preference:
+Try these in order:
 
 1. **PS** on the controller: the motors stop, and PS again resumes.
 2. **Options** on the controller, or **Ctrl+C** in Terminal: the program quits and stops the motors.

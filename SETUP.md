@@ -1,9 +1,8 @@
 # Setup guide: from zero to driving
 
-This guide takes you from an empty SD card to driving your robot with a PS4 controller.
-No programming knowledge needed: follow the steps in order and copy the commands exactly.
+You don't need to know how to program. Follow the steps in order and copy each command exactly.
 
-**Time:** about 1 hour the first time (half of it is waiting for downloads and copying).
+**Time:** about 1 hour the first time.
 **Written for:** Mac laptops. Windows: see the note at the very end.
 **Stuck?** See [TROUBLESHOOTING.md](TROUBLESHOOTING.md), or ask the person who runs the robots.
 
@@ -14,7 +13,7 @@ No programming knowledge needed: follow the steps in order and copy the commands
 | [2](#part-2-start-the-brick) | Start the brick | brick |
 | [3](#part-3-set-up-your-laptop) | Set up your laptop | laptop |
 | [4](#part-4-connect-laptop-brick-and-controller) | Connect laptop, brick and controller | brick |
-| [5](#part-5-drive) | Drive! | |
+| [5](#part-5-drive) | Drive | |
 
 ---
 
@@ -26,32 +25,32 @@ No programming knowledge needed: follow the steps in order and copy the commands
 |---|---|
 | **LEGO MINDSTORMS EV3 brick** | |
 | **Batteries** | The LEGO rechargeable pack, **fully charged**, or 6 fresh AA batteries. Low batteries cause most "random" disconnects |
-| **microSD card, 2 GB to 32 GB** | Must be **microSD or microSDHC**. **Cards larger than 32 GB (SDXC) do NOT work** in the EV3. 8 or 16 GB is ideal. Brand-name (SanDisk, Samsung, Kingston) |
-| **SD card reader** for your laptop | Only if your laptop has no SD slot. A USB-C/USB reader that takes microSD (or microSD → SD adapter) |
-| **USB cable: USB-A or USB-C → mini-USB** | Must be a **data** cable (some only charge). It's the same cable that came with the EV3. Plug it **straight into the laptop, no hub** |
-| **PS4 controller (DualShock 4)** | Charged, with its USB charging cable. **PS5 and Xbox controllers do NOT work** |
-| **2 large motors** + cables | Already on your robot. Spare cables are handy: a bad cable is common |
-| **Stickers / tape and a marker** | To label brick + controller with the same number |
+| **microSD card, 2 GB to 32 GB** | **Cards larger than 32 GB do not work** in the EV3. 8 or 16 GB from a known brand is ideal |
+| **SD card reader** | Only if your laptop has no SD slot |
+| **USB cable: USB-A or USB-C → mini-USB** | A **data** cable, like the one that came with the EV3 (some cables only charge). Plug it **straight into the laptop, no hub** |
+| **PS4 controller (DualShock 4)** | Charged, with its charging cable. **PS5 and Xbox controllers do not work** |
+| **2 large motors** + cables | Bring a spare cable: bad cables are common |
+| **Stickers and a marker** | To label the brick and its controller with the same number |
 
 ### Accounts and information
 
 | Item | Where |
 |---|---|
-| **Your brick number** (1, 2, 3 or 4) | Ask the person who runs the robots. Brick number = controller number = sticker |
-| **GitHub account** | Free at [github.com](https://github.com). Send your username to the person who runs the robots, so they can invite you to the code |
-| **A password manager** or a safe note | For the brick password you'll create. Never put passwords in the code or in chat |
+| **Your brick number** (1, 2, 3 or 4) | Ask the person who runs the robots |
+| **GitHub account** | Free at [github.com](https://github.com). Only needed to upload changes: send your username to the person who runs the robots |
+| **A password manager** | For the brick password you'll create. Never put passwords in the code or in chat |
 
 ### Software to download (all free)
 
 | Program | Get it from | What it's for |
 |---|---|---|
-| **ev3dev operating system** | [ev3dev-stretch-ev3-generic-2020-04-10.zip](https://github.com/ev3dev/ev3dev/releases/download/ev3dev-stretch-2020-04-10/ev3dev-stretch-ev3-generic-2020-04-10.zip) (373 MB). Official page: [ev3dev.org/downloads](https://www.ev3dev.org/downloads/) | The brick's new "brain software". Do **not** unzip it |
+| **ev3dev operating system** | [ev3dev-stretch-ev3-generic-2020-04-10.zip](https://github.com/ev3dev/ev3dev/releases/download/ev3dev-stretch-2020-04-10/ev3dev-stretch-ev3-generic-2020-04-10.zip) (373 MB). Official page: [ev3dev.org/downloads](https://www.ev3dev.org/downloads/) | The brick's operating system. Do **not** unzip it |
 | **Raspberry Pi Imager** | [raspberrypi.com/software](https://www.raspberrypi.com/software/) | Copies ev3dev onto the SD card |
-| **Visual Studio Code** | [code.visualstudio.com](https://code.visualstudio.com/) | Editing code (optional but nice) |
+| **Visual Studio Code** | [code.visualstudio.com](https://code.visualstudio.com/) | Optional, for editing code |
 | **ev3dev-browser** extension | In VS Code: Extensions (⇧⌘X) → search `ev3dev-browser` → Install | See and control the brick from VS Code |
 
-> **Don't worry about the brick:** ev3dev runs entirely from the SD card. Take the card out
-> and the brick starts the normal LEGO software again, unchanged.
+ev3dev runs entirely from the SD card and doesn't change the brick. Take the card out and
+the brick starts the normal LEGO software again.
 
 ---
 
@@ -65,12 +64,11 @@ Do this on your laptop. **Everything on the SD card will be erased.**
 4. **Choose OS** → scroll to the **bottom** → **Use custom** → select the file
    `ev3dev-stretch-ev3-generic-2020-04-10.zip` (in Downloads). Don't unzip it first.
 5. **Choose Storage** → select your **SD card**.
-   ⚠️ Check the size matches your card (e.g. "16 GB"), so you never erase the wrong disk.
+   Check that the size matches your card (for example 16 GB), so you don't erase the wrong disk.
 6. Click **Next**.
 7. It asks *"Would you like to apply OS customisation settings?"* → click **No**.
-   (Those settings are for Raspberry Pi computers, not the EV3.)
-8. Confirm **Yes** to erase. macOS may ask for **your Mac password**: that's normal, since Imager needs
-   it to write the card.
+   Those settings are for Raspberry Pi computers.
+8. Confirm **Yes** to erase. macOS may ask for **your Mac password** so Imager can write the card.
 9. Wait for **Writing** and **Verifying** to finish (5–15 minutes).
 10. When it says *"Write Successful"*, remove the card. If macOS says *"The disk you inserted was not
     readable"*, click **Ignore** or **Eject**. That's normal: macOS can't read Linux cards.
@@ -92,7 +90,7 @@ don't work with ev3dev): *Flash from file* → the same `.zip` → *Select targe
    - ev3dev logo, **orange** lights
    - the screen goes **blank for about a minute**. This is normal on the first start only.
    - *"brickman loading…"*
-   - **Green lights and a menu** = done ✅
+   - green lights and the ev3dev menu: the brick is ready
 5. **Nothing after 5 minutes?** Flash the card again (Part 1, or with Etcher 1.17.0), try another
    SD card, and check the batteries.
 
@@ -110,8 +108,6 @@ Every coach does this once on their own laptop. All commands go into the **Termi
 press **⌘ Space**, type `Terminal`, press Enter. Paste a command with **⌘ V**, then press **Enter**.
 
 ### 3.1 macOS network settings
-
-These two settings prevent the two most confusing problems:
 
 1. **Keep your internet on Wi-Fi.** Plug the brick into the laptop with USB, turned on.
    Then **System Settings → Network → ⋯** (button at the bottom of the list) → **Set Service Order…**
@@ -132,7 +128,7 @@ If a window offers to install *"command line developer tools"*, click **Install*
 
 ### 3.3 Your SSH key
 
-An SSH key is a digital house key: it lets your laptop into the brick without a password.
+The SSH key lets your laptop log in to the brick without a password.
 **Everyone makes their own. Never share or copy someone else's.**
 
 ```bash
@@ -143,18 +139,17 @@ twice for none.
 
 ### 3.4 Get the code and the brick names
 
-1. Accept the GitHub invitation (check your email, or [github.com/notifications](https://github.com/notifications)).
-2. Download the code into your Documents folder:
+1. Download the code into your Documents folder:
    ```bash
    cd ~/Documents && git clone https://github.com/philo-nabil/ev3-robots.git && cd ev3-robots
    ```
-   The first time, git asks you to sign in to GitHub in the browser.
-3. Teach your laptop the names `ev3-1` … `ev3-4`. This adds the contents of
-   [ssh_config.example](ssh_config.example) to your settings file:
+2. Teach your laptop the names `ev3-1` … `ev3-4`. This adds the contents of
+   [ssh_config.example](ssh_config.example) to your settings file. Run it only once:
    ```bash
    touch ~/.ssh/config && chmod 600 ~/.ssh/config && cat ssh_config.example >> ~/.ssh/config
    ```
-   (Do it only once. Running it twice adds the entries twice. That's harmless, but messy.)
+3. To upload changes later, accept the GitHub invitation from the person who runs the robots
+   (check your email or [github.com/notifications](https://github.com/notifications)).
 
 From now on, always open Terminal in this folder first:
 ```bash
@@ -169,7 +164,7 @@ Replace **`N`** with your brick number everywhere (e.g. `ev3-2`).
 Plug the brick into the laptop with USB and wait until its screen shows an IP address at the top
 (usually `192.168.0.1`; `169.254…` at first is normal, give it 20 seconds).
 
-> Steps 4.1–4.3 are the **only** times you type a password. After that, everything works without one.
+Steps 4.1–4.3 are the only times you type a password.
 
 ### 4.1 Put your key on the brick
 
@@ -243,28 +238,16 @@ Lift the robot off the table and push the sticks. **Ctrl+C** stops it.
 
 ---
 
-## Part 5: Drive!
+## Part 5: Drive
 
-**With the cable** (see messages on your laptop):
-```bash
-./deploy.sh ev3-N
-```
-
-**Without the cable** (free driving):
+To drive without the cable:
 ```bash
 ./deploy.sh ev3-N --copy
 ```
 Unplug USB. On the brick: **File Browser → ev3-robots → controller.py** → centre button.
 Press **PS** on the controller.
 
-| Controller | Action |
-|---|---|
-| Left / right stick | Left / right motor |
-| L1 / R1 | Slower / faster |
-| PS | Emergency stop (press again to continue) |
-| Options | Quit |
-
-Next: [README.md](README.md) explains how to change the code.
+The controls, and how to change what the robot does, are in [README.md](README.md).
 
 ---
 
@@ -286,7 +269,6 @@ Next: [README.md](README.md) explains how to change the code.
 
 Parts 0–2 are the same: Raspberry Pi Imager exists for Windows. For Part 3 onwards, the
 `.sh` scripts need **Git Bash** (installed with [Git for Windows](https://git-scm.com/download/win)),
-and the macOS-only steps (3.1) don't apply. The simplest path on Windows is the
-**VS Code ev3dev-browser** extension: it connects to the brick with the password, and you use
-**Send workspace to device** and **Run**. Pairing (4.5) still needs `pair.sh` from Git Bash,
-or ask someone with a Mac to do it.
+and step 3.1 doesn't apply. On Windows the easiest route is the **VS Code ev3dev-browser**
+extension: it connects with the brick password, and you use **Send workspace to device** and
+**Run**. Pairing (4.5) still needs `pair.sh` from Git Bash, or someone with a Mac.
